@@ -574,7 +574,8 @@ For these types of tasks, a key advantage of CNNs over densley connected ones li
 
 #### Visualising feature maps
 
-In the snippet of code below, we will take an example image and look at the activations in the first layer of the network: that is, we get a glimpse as to how the filters have processed a specific image. 
+In the snippet of code below, adapted from a [this tutorial]{https://rstudio-conf-2020.github.io/dl-keras-tf/notebooks/visualizing-what-cnns-learn.nb.html} we will take an example image and look at the activations in the first layer of the network: that is, we get a glimpse as to how the filters have processed a specific image. 
+
 ```{r,eval=FALSE}
 tf$compat$v1$disable_eager_execution()
 
@@ -587,13 +588,14 @@ first_layer_activation <- activations[[1]]
 dim(first_layer_activation)
 ```
 
-Recall that the first layer is an array of size $86 \times 156 \times 20$. Our output here should be the same. We can now visualise some of these feature maps (alongside the image itself):
+Recall that the first layer is an array of size $86 \times 156 \times 20$. That is, 20 different feature representations of $86 \times 146$ (recall that we can check the expected size of individual layers by looking at the model summary). Our output should be the same. We will visualise some of these feature representations (alongside the image itself). First the image:
 
 ```{r,eval=FALSE}
 grid::grid.newpage()
 grid.raster(predictX[choice,1:90,1:160,1:3], interpolate=FALSE, width = 0.3, x = 0.5, y=0.2)
 ```
 
+And now feature maps $1,2,3,4,5,10,12,15$ and $20$.
 
 ```{r,eval=FALSE}
 op <- par(mfrow=c(3,3))
